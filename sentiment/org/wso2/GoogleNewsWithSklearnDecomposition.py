@@ -3,9 +3,9 @@ import csv
 from gensim.models import Word2Vec
 from sklearn.decomposition import PCA
 
-outputFile = open('/home/chehara/Videos/Approach1/unique/GoogleNewsModel/vectorsReduced.csv', "wb")
+outputFile = open('/home/chehara/Approach1/unique/GoogleNewsModel/vectorsReduced.csv', "wb")
 writer = csv.writer(outputFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, escapechar=',')
-word2VecModel = Word2Vec.load_word2vec_format('/home/chehara/Videos/Approach1/unique/GoogleNewsModel/GoogleNews-vectors-negative300.bin', binary=True)
+word2VecModel = Word2Vec.load_word2vec_format('/home/chehara/Approach1/unique/GoogleNewsModel/GoogleNews-vectors-negative300.bin', binary=True)
 
 with open('/home/chehara/Videos/Approach1/unique/TweetSentiments.csv', 'rb') as f:
     reader = csv.reader(f, delimiter=',', quoting=csv.QUOTE_NONE)
