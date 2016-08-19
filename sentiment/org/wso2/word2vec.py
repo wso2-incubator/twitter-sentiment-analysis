@@ -3,7 +3,6 @@ from gensim.models import Word2Vec
 outputFile = open('/home/anoukh/SentimentAnalysis/vectors.csv', "wb")
 writer = csv.writer(outputFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, escapechar=',')
 model = Word2Vec.load_word2vec_format('/home/anoukh/SentimentAnalysis/GoogleNews-vectors-negative300.bin', binary=True)
-print "Begin"
 with open('/home/anoukh/SentimentAnalysis/data.csv', 'rb') as f:
     reader = csv.reader(f, delimiter=',', quoting=csv.QUOTE_NONE)
     inputArray = []
