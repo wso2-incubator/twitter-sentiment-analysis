@@ -29,16 +29,39 @@ Then the results were categorized into 3 classes based on the scale of [-1,0,1] 
         For 200K -> Agreed : Conflict ratio was 76% : 24%
         For 100K -> Agreed : Conflict ratio was 74% : 26%
         
-    Then all agreed tweets ran through TweetToVec model by assuming
-        Number of words per tweet = 140 characters per tweet (max) /4 characters --> Approximately 35 words
-        Vector size per word = 10
-        Total Vector size per tweet = 350
+   We have now obtained a dataset with a collection of tweets and their corresponding sentiments. To create a prediction model for sentiments we are using WSO2's Machine Learner. 
+   To use Random Forest Classification we used the following techniques to represent a tweet a numerical manner
+   
+    1.  Word2Vec in Apache Spark ML Library
+    2.  Word2Vec in Python's Gensim Library
+    3.  Global Vector (Glove) Library
+    4.  TFIDF in Python's sklearn Library
+    
+   **1. Word2Vec in Apache Spark ML Library**
+   
+  Using the Word2Vec implementation we created a Tweet2Vec feature that generates the vectors of a tweet instead of a word.
+  The following were the features of the tweets that were used in running the Tweet2Vec
+           Number of words per tweet = 140 characters per tweet (max) /4 characters --> Approximately 35 words
+           Vector size per word = 10
+           Total Vector size per tweet = 350
+   
+  The output of the tweet2vec is the unique tweets and the corresponding vectors. The sentiment of each unique tweet was again found and a final dataset was created.
+  
+  Final outcome would be a file 200K/100K tweets * 350 tweet vector, and this method returns only the unique tweets with it's tweet vector.
+  So these tweets were run through the above 4 approaches again and attached the most preferred sentiment result in addition to it's tweet vector.
+  In here you can verify the final sentiment result because it gives all the tweets as "Agreed".
+   
+  Finally,these results were plugged into Random Forest Classification Algorithm of wso2 Machine Learner to predict the accuracy. Following results will show you how the accuracy of prediction had been varied.
+         200K --> 61.1% (1)
+         200K --> 56% (2)
+   
+   **2. Word2Vec in Python's Gensim Library**
+   
+   **3. Global Vector (Glove) Library**
+   
+   **4. TFIDF in Python's sklearn Library**
+   
 
-    Final outcome would be a file 200K/100K tweets * 350 tweet vector, and this method returns only the unique tweets with it's tweet vector. So these tweets were ran through the above 4 approaches again and attached the most preferred sentiment result in addition to it's tweet vector. In here you can verify the final sentiment result because it gives all the tweets as "Agreed".
-
-    Finally,these results were plugged into Random Forest Classification Algorithm of wso2 Machine Learner to predict the accuracy. Following results will show you how the accuracy of prediction had been varied.
-        200K --> 61.1% (1)
-        200K --> 56% (2)
 
 Final Results
 https://drive.google.com/a/wso2.com/folderview?id=0ByBNSIHzVEPeZnNCVDlnaHE0QTg&usp=sharing
