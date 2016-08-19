@@ -22,7 +22,7 @@ with open('/home/chehara/Videos/Approach1/unique/TweetSentiments.csv', 'rb') as 
                     for single in word2VecModel[word]:      # Loop through the Vector
                         wordArray.append(single)
                 except ValueError:
-                    print "Value Error Baba"
+                    print "Value Error"
                 except KeyError:
                     for num in range(0, 300):
                         wordArray.append(0.1)
