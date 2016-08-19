@@ -4,11 +4,17 @@ Accounted Datasets:
 100K tweets regarding Election 2016
 
 In Twitter Sentiment Analysis we used 2/3 of unique tweets as the training set, and the rest as the test set. Initially this datasets went through 4 diffrent sentiment analyzing approaches seperately as follows after preprocessing:
+	
 	1.Afinn
+	
 	2.Stanford NLP
+	
 	3.MS Text Analytics
+	
 	4.Negative-Positive
+	
 Then the results were categorized into 3 classes based on the scale of [-1,0,1] . For the purpose of getting most preferred result out of 4 results below techniques had been used:
+	
 	1.getting 3/4 chances considered as "Agreed", and the rest as "Conflict"
 		For 200K -> Agreed : Confict ratio was 69% : 31%
 		For 100K -> Agreed : Confict ratio was 71% : 29%
