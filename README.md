@@ -1,6 +1,8 @@
 # sentiment-analysis
 Accounted Datasets:
+
 200K tweets continuously collected for 3 days regarding US Election 2016
+
 100K tweets regarding Election 2016
 
 In Twitter Sentiment Analysis we used 2/3 of unique tweets as the training set, and the rest as the test set. Initially this datasets went through 4 diffrent sentiment analyzing approaches seperately as follows after preprocessing:
