@@ -43,6 +43,7 @@ Then the results were categorized into 3 classes based on the scale of [-1,0,1] 
   The LKATag class was used to create a word2vecmodel and the Tweet2vecModel was used to generate the vectors for each tweet.
   
   The following were the features of the tweets that were used in running the Tweet2Vec
+           
            Number of words per tweet = 140 characters per tweet (max) /4 characters --> Approximately 35 words
            Vector size per word = 10
            Total Vector size per tweet = 350
@@ -50,8 +51,9 @@ Then the results were categorized into 3 classes based on the scale of [-1,0,1] 
   The output of the tweet2vec is the unique tweets and the corresponding vectors. The sentiment of each unique tweet was again found and a final dataset was created.
    
   Having represented each tweet in a vector format we plug the vectors and their respective sentiment into Random Forest Classification Algorithm of wso2 Machine Learner. Following results will show you how the accuracy of prediction had been varied.
-         200K --> 61.1% (1)
-         200K --> 56% (2)
+            
+            200K using method 1 to find sentiments was 61.1%
+            200K using method 2 to find sentiments was 56%
    
    **2. Word2Vec in Python's Gensim Library**
    
@@ -59,12 +61,16 @@ Then the results were categorized into 3 classes based on the scale of [-1,0,1] 
    For this method we used the already available _GoogleNews-vectors-negative300.bin_ model to generate the vectors.
    
    Following are the features of the vectors generated using gensim
+   
            Vector size per word = 300
            Number of words per tweet = 28
            Vector size per tweet = 300*28 = 8400
    
    Such a vector size generated a large output file, the size of which was not supported by the machine learner. So therefore we used sklearns PCA to reduce the vector size from 8400 to 28 for each tweet.
    After this, the vectors and their corresponding sentiment was fed into the machine learner and the results are as follows 
+            
+            200k using method 1 to find sentiments was 59.26% accuracy
+            200k using method 2 to find sentiments was 56.37% accuracy
       
    **3. Stanford's Global Vector (Glove) Library**
    
