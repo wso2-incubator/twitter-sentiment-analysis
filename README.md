@@ -30,37 +30,57 @@ Then the results were categorized into 3 classes based on the scale of [-1,0,1] 
         For 100K -> Agreed : Conflict ratio was 74% : 26%
         
    We have now obtained a dataset with a collection of tweets and their corresponding sentiments. To create a prediction model for sentiments we are using WSO2's Machine Learner. 
-   To use Random Forest Classification we used the following techniques to represent a tweet a numerical manner
+   To use Random Forest Classification we used the following techniques to represent a tweet in a numerical manner
    
     1.  Word2Vec in Apache Spark ML Library
     2.  Word2Vec in Python's Gensim Library
     3.  Global Vector (Glove) Library
     4.  TFIDF in Python's sklearn Library
     
-   **1. Word2Vec in Apache Spark ML Library**
+   **1. Word2Vec in Apache Spark ML Library** 
    
-  Using the Word2Vec implementation we created a Tweet2Vec feature that generates the vectors of a tweet instead of a word.
+  Using the Word2Vec implementation, we created a Tweet2Vec feature that generates the vectors of a tweet instead of a word. Find this implementation in _ApacheSparkNLP_ folder.
+  The LKATag class was used to create a word2vecmodel and the Tweet2vecModel was used to generate the vectors for each tweet.
+  
   The following were the features of the tweets that were used in running the Tweet2Vec
            Number of words per tweet = 140 characters per tweet (max) /4 characters --> Approximately 35 words
            Vector size per word = 10
            Total Vector size per tweet = 350
    
   The output of the tweet2vec is the unique tweets and the corresponding vectors. The sentiment of each unique tweet was again found and a final dataset was created.
-  
-  Final outcome would be a file 200K/100K tweets * 350 tweet vector, and this method returns only the unique tweets with it's tweet vector.
-  So these tweets were run through the above 4 approaches again and attached the most preferred sentiment result in addition to it's tweet vector.
-  In here you can verify the final sentiment result because it gives all the tweets as "Agreed".
    
-  Finally,these results were plugged into Random Forest Classification Algorithm of wso2 Machine Learner to predict the accuracy. Following results will show you how the accuracy of prediction had been varied.
+  Having represented each tweet in a vector format we plug the vectors and their respective sentiment into Random Forest Classification Algorithm of wso2 Machine Learner. Following results will show you how the accuracy of prediction had been varied.
          200K --> 61.1% (1)
          200K --> 56% (2)
    
    **2. Word2Vec in Python's Gensim Library**
    
-   **3. Global Vector (Glove) Library**
+   Another word2vec library we used was the gensim python library. Find the code in the python file named _GoogleNewsWithSklearnDecomposition.py_ in the folder _Glove_TFID_GoogleNews._
+   For this method we used the already available _GoogleNews-vectors-negative300.bin_ model to generate the vectors.
+   
+   Following are the features of the vectors generated using gensim
+           Vector size per word = 300
+           Number of words per tweet = 28
+           Vector size per tweet = 300*28 = 8400
+   
+   Such a vector size generated a large output file, the size of which was not supported by the machine learner. So therefore we used sklearns PCA to reduce the vector size from 8400 to 28 for each tweet.
+   After this, the vectors and their corresponding sentiment was fed into the machine learner and the results are as follows 
+      
+   **3. Stanford's Global Vector (Glove) Library**
+   
+   The next method we used to represent the tweets in a numerical manner was generating vectors using the Glove library.
+   Initially we used the glove twitter model provided in the stanford website but since our tweets were election tweets the accuracy rate was very minimum.
+   Therefore we created our own model and used that to generate the tweet representation. Find the code in the python file _glove.py_ in the folder _Glove_TFID_GoogleNews_
+   
+   The results of the Glove method once used in the machine learner are as follows
    
    **4. TFIDF in Python's sklearn Library**
    
+   The final method used to represent the tweets in a numerical manner is the TFIDF (Term Frequency Inverse Document Frequency)
+   Find the code in the python file _tfid.py_ in the folder _Glove_TFID_GoogleNews_
+   Using this method, a tweet is represented in a 500 numerical values which we reduced to 20 by using the PCA method.
+   
+   The results of the TFIDF method once used in the machine learner are as follows 
 
 
 Final Results
