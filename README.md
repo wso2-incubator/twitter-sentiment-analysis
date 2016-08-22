@@ -72,7 +72,7 @@ Then the results were categorized into 3 classes based on the scale of [-1,0,1] 
    Initially we used the glove twitter model provided in the stanford website but since our tweets were election tweets the accuracy rate was very minimum.
    Therefore we created our own model and used that to generate the tweet representation. Find the code in the python file _glove.py_ in the folder _Glove_TFID_GoogleNews_
    
-   The results of the Glove method once used in the machine learner are as follows
+   The accuracy of the random forest classification model generated using the machine learner using the Glove data set is 50.02%
    
    **4. TFIDF in Python's sklearn Library**
    
@@ -80,7 +80,8 @@ Then the results were categorized into 3 classes based on the scale of [-1,0,1] 
    Find the code in the python file _tfid.py_ in the folder _Glove_TFID_GoogleNews_
    Using this method, a tweet is represented in a 500 numerical values which we reduced to 20 by using the PCA method.
    
-   The results of the TFIDF method once used in the machine learner are as follows 
+   The accuracy of the random forest classification model generated using the machine learner using the TFIDF data set is 50.62%
+   
 
 
 Final Results
