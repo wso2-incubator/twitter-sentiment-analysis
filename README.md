@@ -6,28 +6,29 @@ Accounted Datasets:
 100K tweets regarding Election 2016
 
 In Twitter Sentiment Analysis we used 2/3 of unique tweets as the training set, and the rest as the test set. Initially this datasets went through 4 different sentiment analyzing approaches separately as follows after preprocessing:
+   **1.Afinn**
+   AFINN is a list of words rated for valence with an integer between minus five (negative) and plus five (positive).
     
-    1.Afinn
+  **2.Stanford NLP**  
     
-    2.Stanford NLP
-    
-    3.MS Text Analytics
-    
-    4.Negative-Positive
+  **3.MS Text Analytics**  
+  This returns a numeric score between 0 and 1. Scores close to 1 indicate positive sentiment, while scores close to 0 indicate negative sentiment. Sentiment score is generated using classification techniques. The input features to the classifier include n-grams, features generated from part-of-speech tags, and word embeddings. 
+      
+  **4.Negative-Positive**
     
 Then the results were categorized into 3 classes based on the scale of [-1,0,1] . For the purpose of getting most preferred result out of 4 results below techniques had been used:
     
     1.Getting 3/4 chances considered as "Agreed", and the rest as "Conflict"
-        For 200K -> Agreed : Conflict ratio was 69% : 31%
-        For 100K -> Agreed : Conflict ratio was 71% : 29%
+        For 200K -> Agreed : Conflict ratio was 69.3% : 30.7%
+        For 100K -> Agreed : Conflict ratio was 42.9% : 57.1%
 
     2.By giving a weight for each approach according to a predefined criteria and getting the sum as :
         Sum = Afinn*0.2 + Stanford*0.35 + Negative-Positive*0.1 + MS*0.35
         then partitioning done by contemplating their combinations,permutations,lower boundaries and upper boundaries,
         sum<-0.45 --> -1 , sum>0.45 --> 1 , getting zero 3/4 chances and -0.1<=sum<=0.1 --> 0
 
-        For 200K -> Agreed : Conflict ratio was 76% : 24%
-        For 100K -> Agreed : Conflict ratio was 74% : 26%
+        For 200K -> Agreed : Conflict ratio was 86.9% : 13.1%
+        For 100K -> Agreed : Conflict ratio was 70.77% : 29.22%
         
    We have now obtained a dataset with a collection of tweets and their corresponding sentiments. To create a prediction model for sentiments we are using WSO2's Machine Learner. 
    To use Random Forest Classification we used the following techniques to represent a tweet in a numerical manner
@@ -54,6 +55,9 @@ Then the results were categorized into 3 classes based on the scale of [-1,0,1] 
             
             200K using method 1 to find sentiments was 61.1%
             200K using method 2 to find sentiments was 56%
+            
+            100K using method 1 to find sentiments was 61.1%
+            100K using method 2 to find sentiments was 56%
    
    **2. Word2Vec in Python's Gensim Library**
    
