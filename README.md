@@ -5,17 +5,19 @@ Accounted Datasets:
 
 100K tweets regarding Election 2016
 
-In Twitter Sentiment Analysis we used 2/3 of unique tweets as the training set, and the rest as the test set. Initially this datasets went through 4 different sentiment analyzing approaches separately as follows after preprocessing:
-   **1.Afinn**
+In Twitter Sentiment Analysis we used 2/3 of unique tweets as the training set, and the rest as the test set. Initially this datasets went through 4 different sentiment analyzing approaches separately as follows after preprocessing:  
+  **1.Afinn**  
    AFINN is a list of words rated for valence with an integer between minus five (negative) and plus five (positive).
     
   **2.Stanford NLP**  
+  This is a library provided by Stanford University for Natural Language Processing. This includes a very powerful sentiment analysis package as well.  
     
   **3.MS Text Analytics**  
   This returns a numeric score between 0 and 1. Scores close to 1 indicate positive sentiment, while scores close to 0 indicate negative sentiment. Sentiment score is generated using classification techniques. The input features to the classifier include n-grams, features generated from part-of-speech tags, and word embeddings. 
       
-  **4.Negative-Positive**
-    
+  **4.Negative-Positive**  
+  This is just a collection of negative and positive words. Each word in a sentence is cross checked with each word in the two buckets and an overall sentiment of the sentence is decided.
+  
 Then the results were categorized into 3 classes based on the scale of [-1,0,1] . For the purpose of getting most preferred result out of 4 results below techniques had been used:
     
     1.Getting 3/4 chances considered as "Agreed", and the rest as "Conflict"
